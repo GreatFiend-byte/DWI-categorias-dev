@@ -21,7 +21,7 @@ public class Idgs093Application {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:5173/")
+                        .allowedOrigins("https://frontevajava-production.up.railway.app/")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos HTTP permitidos
                         .allowedHeaders("*") // Permite todos los encabezados
                         .allowCredentials(true) // Permite el envío de cookies y credenciales
