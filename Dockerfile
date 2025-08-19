@@ -1,14 +1,13 @@
-# Imagen base con Java 17 (compatible con Spring Boot 3.x)
-FROM eclipse-temurin:17-jdk-alpine
-
-# Directorio de trabajo dentro del contenedor
+# Fase 1: Construir el JAR con Maven (imagen actualizada y verificada)
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Copia el jar generado por Maven al contenedor
-COPY target/idgs09_3-0.0.1-SNAPSHOT.jar /app/ms-categorias.jar
-
-# Expone el puerto por defecto de Spring Boot
+# Fase 2: Imagen final con JRE (más ligera)
+FROM eclipse-temurin:17-jre-jammy
+WORKDIR /app
+COPY --from=builder /app/target/idgs09_3-0.0.1-SNAPSHOT.jar ./app.jar
 EXPOSE 8082
-
-# Comando para ejecutar la aplicación Spring Boot
-ENTRYPOINT ["java", "-jar", "ms-categorias.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
