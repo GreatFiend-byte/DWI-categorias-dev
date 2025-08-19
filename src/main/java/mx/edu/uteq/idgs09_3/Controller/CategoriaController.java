@@ -68,9 +68,9 @@ public class CategoriaController {
     @Autowired
     private ProfesorCategoriaService profesorCategoriaService;
 
-    @PostMapping("/asignar-profesor/{profesorId}")
+    @PostMapping("/asignar-profesor")
     public ResponseEntity<?> asignarCategoriaAProfesor(
-            @PathVariable int profesorId,
+            @RequestParam  int profesorId,
             @RequestParam int categoriaId) {
 
         try {
