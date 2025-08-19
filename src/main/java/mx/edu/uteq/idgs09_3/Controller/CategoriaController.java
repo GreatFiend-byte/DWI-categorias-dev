@@ -70,11 +70,10 @@ public class CategoriaController {
 
     @PostMapping("/asignar-profesor")
     public ResponseEntity<?> asignarCategoriaAProfesor(
-            @RequestParam  int profesorId,
-            @RequestParam int categoriaId) {
+            @RequestBody AsignacionRequest request) {
 
         try {
-            ProfesorCategoria relacion = profesorCategoriaService.asignarCategoria(profesorId, categoriaId);
+            ProfesorCategoria relacion = profesorCategoriaService.asignarCategoria(request.getProfesorId(), request.getCategoriaId());
             return ResponseEntity.ok(relacion);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
