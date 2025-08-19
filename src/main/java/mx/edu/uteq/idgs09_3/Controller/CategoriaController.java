@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import mx.edu.uteq.idgs09_3.model.entity.Categorias;
 import mx.edu.uteq.idgs09_3.model.entity.ProfesorCategoria;
 import mx.edu.uteq.idgs09_3.service.ProfesorCategoriaService;
+import mx.edu.uteq.idgs09_3.model.dto.AsignacionRequest;
 
 import java.util.List;
 import java.util.Optional;
